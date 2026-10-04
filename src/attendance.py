@@ -28,6 +28,9 @@ def register_student(
     student_id,
     name,
     college,
+    college_email,
+    branch,
+    year,
     photo_bytes,
     face_feature
 ):
@@ -56,7 +59,9 @@ def register_student(
     )
 
     if image is None:
-        raise ValueError("Unable to process the reference image.")
+        raise ValueError(
+            "Unable to process the reference image."
+        )
 
     cv2.imwrite(
         str(photo_path),
@@ -77,6 +82,9 @@ def register_student(
             "student_id": student_id,
             "name": name.strip(),
             "college": college.strip(),
+            "college_email": college_email.strip(),
+            "branch": branch,
+            "year": year,
             "photo": str(photo_path),
             "feature": str(feature_path)
         }

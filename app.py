@@ -8,7 +8,7 @@ from datetime import datetime
 from io import BytesIO
 
 from src.face_engine import FaceEngine
-from src.attendance import register_student, load_students
+from src.attendance import register_student, load_students, save_students
 
 
 # ============================================================
@@ -369,6 +369,32 @@ elif page == "Student Registration":
             placeholder="Enter college name"
         )
 
+        college_email = st.text_input(
+            "College Email ID",
+            placeholder="student@college.edu"
+        ).strip()
+
+        branch = st.selectbox(
+            "Branch",
+            [
+                "B.Tech (CSE)",
+                "B.Tech (AI/ML)",
+                "BCA",
+                "BBA",
+                "MCA"
+            ]
+        )
+
+        year = st.selectbox(
+            "Year",
+            [
+                "1st Year",
+                "2nd Year",
+                "3rd Year",
+                "4th Year"
+            ]
+        )
+
         st.caption(
             "Student ID format: K + exactly 5 digits."
         )
@@ -443,12 +469,15 @@ elif page == "Student Registration":
             not student_id
             or not name
             or not college
+            or not college_email
+            or not branch
+            or not year
             or photo is None
         ):
 
             st.error(
-                "Please complete Student ID, Name, College "
-                "and Reference Photo."
+                "Please complete all student details and upload "
+                "a Reference Photo."
             )
 
         elif not re.fullmatch(
@@ -459,6 +488,15 @@ elif page == "Student Registration":
             st.error(
                 "Invalid Student ID. Please use the format "
                 "Kxxxxx. Example: K12345"
+            )
+
+        elif not re.fullmatch(
+            r"[^@\s]+@[^@\s]+\.[^@\s]+",
+            college_email
+        ):
+
+            st.error(
+                "Please enter a valid College Email ID."
             )
 
         else:
@@ -569,6 +607,17 @@ elif page == "Student Registration":
                             photo_bytes=photo.getvalue(),
                             face_feature=feature
                         )
+
+                        # Add extended student profile metadata without
+                        # changing the existing registration/embedding API.
+                        updated_students = load_students()
+                        for registered_student in updated_students:
+                            if registered_student["student_id"].upper() == registered_id.upper():
+                                registered_student["college_email"] = college_email
+                                registered_student["branch"] = branch
+                                registered_student["year"] = year
+                                break
+                        save_students(updated_students)
 
                         # ------------------------------------
                         # SUCCESS
