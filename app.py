@@ -636,6 +636,41 @@ elif page == "Student Registration":
                     f"Registration failed: {error}"
                 )
 
+    # ============================================================
+    # REGISTERED STUDENTS
+    # ============================================================
+
+    st.divider()
+
+    st.markdown(
+        '<div class="section-title">Registered Students</div>',
+        unsafe_allow_html=True
+    )
+
+    registered_students = load_students()
+
+    if registered_students:
+        registered_student_rows = []
+
+        for student in registered_students:
+            registered_student_rows.append(
+                {
+                    "Student ID": student.get("student_id", ""),
+                    "Name": student.get("name", ""),
+                    "College": student.get("college", ""),
+                    "College Email": student.get("college_email", ""),
+                    "Branch": student.get("branch", ""),
+                    "Year": student.get("year", "")
+                }
+            )
+
+        st.dataframe(
+            pd.DataFrame(registered_student_rows),
+            use_container_width=True,
+            hide_index=True
+        )
+    else:
+        st.info("No students registered yet.")
 
 # ============================================================
 # TAKE ATTENDANCE
