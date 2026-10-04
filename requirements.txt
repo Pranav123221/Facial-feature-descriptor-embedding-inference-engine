@@ -1,5 +1,7 @@
 streamlit
-opencv-contrib-python
+
+opencv-contrib-python-headless==4.10.0.84
+
 numpy
 pandas
 Pillow
