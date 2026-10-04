@@ -484,10 +484,6 @@ Author
 Pranav Sharma
 
 Computer Science (AI/ML) Undergraduate
-Interested in Machine Learning • Computer Vision • Generative AI • AI Engineering
+Interested in Machine Learning • Deep Learning • Generative AI • AI Engineering
 
 GitHub: @Pranav123221
----
-<p align="center">
-Deep Features → Embeddings → Similarity → Identity → Attendance
-</p> ```
