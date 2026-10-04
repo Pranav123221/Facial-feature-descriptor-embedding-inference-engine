@@ -28,15 +28,11 @@ def register_student(
     student_id,
     name,
     college,
-    college_email,
-    branch,
-    year,
     photo_bytes,
     face_feature
 ):
     students = load_students()
 
-    # Prevent duplicate Student IDs
     for student in students:
         if student["student_id"].lower() == student_id.strip().lower():
             raise ValueError(
@@ -45,7 +41,6 @@ def register_student(
 
     student_id = student_id.strip()
 
-    # Save reference photo
     photo_path = STUDENT_DIR / f"{student_id}.jpg"
 
     image_array = np.frombuffer(
@@ -68,7 +63,6 @@ def register_student(
         image
     )
 
-    # Save face embedding
     feature_path = STUDENT_DIR / f"{student_id}.npy"
 
     np.save(
@@ -76,15 +70,11 @@ def register_student(
         face_feature
     )
 
-    # Save student record
     students.append(
         {
             "student_id": student_id,
             "name": name.strip(),
             "college": college.strip(),
-            "college_email": college_email.strip(),
-            "branch": branch,
-            "year": year,
             "photo": str(photo_path),
             "feature": str(feature_path)
         }
