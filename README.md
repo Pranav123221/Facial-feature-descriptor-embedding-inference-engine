@@ -20,7 +20,7 @@ A deep-learning computer vision pipeline for **face detection, facial feature ex
 </p>
 
 ---
-note: Pretrained ONNX model weights are not included in the repository. Download the required YuNet and SFace model files separately and place them in the models/ directory.
+note🔥: Pretrained ONNX model weights are not included in the repository. Download the required YuNet and SFace model files separately and place them in the models/ directory.
 
 ## Overview
 
