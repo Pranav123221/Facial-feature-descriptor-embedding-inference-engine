@@ -1,0 +1,11 @@
+streamlit
+opencv-contrib-python
+numpy
+pandas
+Pillow
+gspread
+google-auth
+google-auth-oauthlib
+pytesseract
+requests
+openpyxl
