@@ -22,6 +22,8 @@ A deep-learning computer vision pipeline for **face detection, facial feature ex
 ---
 note🔥: Pretrained ONNX model weights are not included in the repository. Download the required YuNet and SFace model files separately and place them in the models/ directory.
 
+live demo :[https://facial-feature-descriptor-embedding-inference-engine-pmvkkvxr3.streamlit.app/]
+
 ## Overview
 
 **Facial Feature Descriptor & Embedding Inference Engine** is a modular computer vision system that performs identity inference from facial images using pretrained deep-learning models.
